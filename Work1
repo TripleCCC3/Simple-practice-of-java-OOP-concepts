@@ -1,0 +1,157 @@
+package cosassignment2;
+
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.Queue;
+
+interface facultyOfComputing{
+    void show();
+}    
+class Students implements facultyOfComputing{
+    public void show(){
+        System.out.println("The Student below has the following biodata.");
+    }
+}
+        
+class coursereg{
+    public String name;
+    public String matric_no;
+    public String dept;
+    
+    public coursereg(String name, String matric_no, String dept)
+    {this.name = name;
+     this.matric_no = matric_no;
+     this.dept = dept;
+    }
+    coursereg(){}
+
+    void display(){
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Enter name: ");
+        this.name = sc.nextLine();
+
+        System.out.print("Enter matric_no: ");
+        this.matric_no = sc.nextLine();
+
+        System.out.print("Enter dept: ");
+        this.dept = sc.nextLine();
+        
+        System.out.println("\nRegistration details:");
+        System.out.println("My name is " + name);
+        System.out.println("My matric_no is " + matric_no);
+        System.out.println("My dept is " + dept);
+}
+}
+
+class courseform extends coursereg{    
+    public int level;
+
+    public courseform(String name, String matric_no, String dept, int level)
+    {   super(name, matric_no, dept);   
+        this.level = level;
+    }
+    courseform(){}
+
+    void display(){
+        super.display();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter level: ");
+        this.level = sc.nextInt();
+
+        System.out.println("My level is " + level );     
+    }
+}
+class session extends courseform{
+    public int year;
+
+    public session(String name, String matric_no, String dept, int level, int year)
+    {   super(name, matric_no, dept, level);
+        this.year = year;
+    }
+    session (){}
+    
+    void display(){
+        super.display();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter current year of study: ");
+        this.year = sc.nextInt();       
+
+        System.out.println("My current year of study is "+ year);
+    }
+}
+
+class elective_course{
+    private String classRoom;
+    private int classNo;
+    
+    public elective_course(String classRoom, int classNo){
+        this.classRoom = classRoom;
+        this.classNo = classNo;
+    }
+    
+    public void setclassroom(String Room){
+        this.classRoom = Room;
+    }
+    
+    public void setclassnumber(int number){
+        this.classNo = number;
+}    
+    elective_course(){}
+    
+    public String getclassroom(){
+        return classRoom;
+    }
+    
+    public int getclassnumber(){
+        return classNo;
+    }
+}
+class Modifycourses{
+    void courses(){
+        Queue<String> q = new LinkedList<>();
+        q.add("COS 202");
+        q.add("MU-CYB 225");
+        q.add("MU-CSC 222");   
+
+        System.out.println("Courses added: " + q);
+
+        String remove = q.remove();
+        System.out.println("Course removed: "+ remove);
+
+        String peek = q.peek();
+        System.out.println("The peek is " + peek);
+
+        System.out.print("List of courses after carrying out all the operations are " + q);
+    }
+}
+public class CosAssignment2 {
+    public static void main(String[] args) {
+
+        coursereg course = new session();
+        Students abstraction = new Students(); 
+
+        abstraction.show();
+        course.display();
+
+        elective_course room = new elective_course();
+
+        Scanner sc = new Scanner(System.in);    
+        System.out.print("What Class are we using for COS 202? ");
+        String Room = sc.nextLine();
+
+        room.setclassroom(Room);
+        System.out.print("What is the class number? ");
+        int number = sc.nextInt();
+
+        room.setclassnumber(number);
+        System.out.println("The class we are using is " + room.getclassroom());
+        System.out.println("The class number is " + room.getclassnumber());
+
+        Modifycourses listOfCourses = new Modifycourses();
+        listOfCourses.courses();
+        sc.close();
+
+    }
+} 
